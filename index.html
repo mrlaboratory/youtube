@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='//cdn.jsdelivr.net' rel='dns-prefetch'/>
+<link href='//m.tube2.me' rel='dns-prefetch'/>
+<link href='//static.addtoany.com' rel='dns-prefetch'/>
+<link href='//www.youtube-nocookie.com' rel='dns-prefetch'/>
+<link href='//s.ytimg.com' rel='dns-prefetch'/>
+<link href='//yt3.ggpht.com' rel='dns-prefetch'/>
+<link href='//fonts.gstatic.com' rel='dns-prefetch'/>
+<link href='//i.ytimg.com' rel='dns-prefetch'/>
+</head>
+<body>
+    <div class='navbar no-items section' id='navbar'></div>
+    <nav class='nav main-nav'>
+    <div class='container my2'>
+    <div class='nav-left mb1'>
+    <a class='brand my1' href='/' id='brand'>
+    <img alt='web logo' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAC2klEQVR42u2az08TURDHW2968L/wR/wDNB6lLdL94Y/sriVahCDRRC7+SDS0RNeDhEQjatUQUUShpkLU6KGRUIgkepKDR4NiYoSepJDoQXro+Kb11YWWZEursvvmm8yl6ZvOfPpm3tt2PB4SiUQikUgkEolEIpFKFAwe2eyX9E6/rE8x+8EM1rlhjO/8shHF2KtKvl7SdjFnaQckvZrN1SnGzrUlr2rbmYNFByfPbWFPg7GtYgBsC01wJwcbWyA5Og7z8xlY78IYk69ScCDUbIWQqih5X9DYwRfv3ReCD9MfwWma/jQDDftDRQgV7QL27R/nCzsvdYNTFTW7igACkt5mH0Ch6+cX3h+IOxYAxl4sA5aTfQCKbvKFD+NPHAsAYy8CYDkRAAJAAAgAASAABIAA/D8AiVGAVhPgxmOAbwsCAjgcATDOFSwcBRgeA/iZFQgAT95qJy4DvJ4CyOUEBcCtI8aeYb8IDADt0HmAWAJg8bugALg1XwBIvhEYALe37wkAlQA1QVEARG4JegwKdRES/iqMD0MtFwV+GKLfAwgAASAABMABAAKS0cQXpiYmHQtgbHzyz9/jsha2DcA0zQ24AJPP/YUb2r8Sxo45YC6YU8VjMuASrXlKTAgAPim0ldXI51pMZOFMTl//YEkAX2fTEG49adtP07F2mJ1Ll/i52/9o2dxPlTYTULQtnoCsR2o5lqZq4ZLAh5++qNjPyLOXJX7Qdy1j9Sl6x7Ijr/od0Aj3BobK7oCjbe22/eB7y+2AvgdD+c+oGQQ8GtkOOMtf6In1gtt17WavZXBKO+2pVzTVSj6bzbo2+aWl7IpeZMgeVVU34Tgpf/Hq9TuuhIDJX+m5bS2BzG7D2Fi4+VnKgHdhLIfEyHNXGG77MqfQKetp6PUrWtwFg9H2ur+sD2LOK68EXp9inLGWgwst8/ub9656McKekG+MrEOyN3e7wlguPklXijVv0S8bBp6I7ezhwgAAAABJRU5ErkJggg=='/>
+    <span class='h6'>Nocookie Tube</span>
+    </a>
+    <div class='hide-lg hide-md hide-sm nav-right is-right'>
+    <span class=' burger-btn' id='burger-open' onclick='show_burger();return false;'>&#9776;</span>
+    <span class=' burger-btn is-hidden' id='burger-close' onclick='show_burger();return false;'>X</span>
+    </div>
+    </div>
+    <div class='nav-center'>
+    <form action='/p/search.html' class='is-full-width my1' method='get'>
+    <div class='search-input search-input--icon-right'>
+    <label>
+    <input class='is-full-width p1' name='q' placeholder='Search...' required='' type='search'/>
+    </label>
+    <button class='search-input__btn bg-primary'>
+    <svg class='icon' viewBox='0 0 24 24'>
+    <g fill='none' stroke='currentColor' stroke-linecap='square' stroke-linejoin='miter' stroke-miterlimit='10' stroke-width='2'>
+    <line x1='22' x2='15.656' y1='22' y2='15.656'></line>
+    <circle cx='10' cy='10' r='8'></circle>
+    </g>
+    </svg>
+    </button>
+    </div>
+    </form>
+    </div>
+    <div class='nav-right hide-xs' id='burger-menu'>
+    <a class='button clear' href='/p/trends.html'>Trending</a>
+    <a class='button clear' href=''>Subscribe</a>
+    </div>
+    </div>
+    </nav>
+    <div class='container my2'>
+    <div x-data='getIndex()' x-init='fetchIndex()'>
+    <template :key='id' x-for='[id, section] in Object.entries(index_data)'>
+    <div>
+    <template x-if='section.data.items.length'>
+    <div>
+    <h1 x-text='section.title'></h1>
+    <template :key='videos' x-for='videos in section.data.items.chunk_it(4)'>
+    <div class='row'>
+    <template :key='item' x-for='item in videos'>
+    <div class='col-12 col-6-md col-3-lg'>
+    <a :href='&#39;/search/label/&#39; + item.id'>
+    <img :alt='item.snippet.title' :data-src='item.snippet.thumbnails.medium.url' class='lozad is-full-width' src='https://m.tube2.me/static/web/img/placeholder.png'/>
+    <h2 class='h6 m0 blka break-word' x-text='item.snippet.title'></h2>
+    </a>
+    </div>
+    </template>
+    </div>
+    </template>
+    </div>
+    </template>
+    </div>
+    </template>
+    </div>
+    <script src='https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js'></script>
+    <script type='text/javascript'>
+          //<![CDATA[
+          var observer = lozad();
+    
+          Object.defineProperty(Array.prototype, 'chunk_it', {
+            value: function(chunkSize) {
+              var array = this;
+              return [].concat.apply([],
+                array.map(function(elem, i) {
+                  return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
+                })
+              );
+            }
+          });
+          function seo(title, desc) {
+            document.title = title;
+            var d = document.createElement('meta'); 
+            d.name = 'description'; 
+            d.content = desc.substring(0, 160);
+            document.head.appendChild(d);
+          }
+    
+          function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+          }
+    
+          var api_url = getParameterByName('c') !== null ? "https://m.tube2.me/api/index/"+getParameterByName('c') : "https://m.tube2.me/api/index"
+    
+          seo(getParameterByName('c') !== null ? "watch online video in " + getParameterByName('c') : "watch online video", "The best alternative site for YouTube that provides you with a quick and wonderful experience");
+    
+          function getIndex() {
+            return {
+              index_data: [],
+              fetchIndex() {
+                fetch(api_url)
+                .then(res => res.json())
+                .then(data => {
+                  this.index_data = data;
+                  this.$nextTick(() => {observer.observe()});
+    
+                });
+              },
+            }
+          }
+            //]]>
+    
+        </script>
+    </div>
+</body>
+</html>
